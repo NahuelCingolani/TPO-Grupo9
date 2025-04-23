@@ -1,0 +1,49 @@
+.filter-sidebar {
+  padding: 1rem;
+  background: black;
+  border-radius: 8px;
+  width: 250px; /* Ancho fijo */
+  min-height: 100vh; /* Altura mínima igual al viewport */
+  position: fixed; /* Hacer que sea fijo */
+  top: 0;
+  left: 0;
+  color: white; /* Contraste con el fondo */
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column; /* Apilar las checkboxes */
+  gap: 10px;
+  max-height: calc(100vh - 15rem); /* Ajusta la altura máxima disponible */
+  overflow-y: auto; /* Agrega el scroll si el contenido excede el área visible */
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+}
+
+.apply-filter-button, .reset-filter-button {
+  background-color: #e0e0e0;
+  color: black;
+  border: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.apply-filter-button:hover, .reset-filter-button:hover {
+  background-color: #d4d4d4;
+}
+
+.button-container {
+  display: flex; /* Hace que los botones estén en una fila */
+  gap: 10px; /* Espacio entre los botones */
+  margin-top: 10px;
+}
+
+.store-page {
+  display: flex;
+  margin-left: 260px; /* Ajustar margen para que no se superponga con la sidebar fija */
+  padding: 1rem;
+}
