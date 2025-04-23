@@ -1,16 +1,14 @@
-import React from 'react';
-import NavBar from './Components/NavBar';
+import { useState } from 'react'
+import Store from './pages/Store';
+import './App.css'
 
 function App() {
+
   return (
-    <div>
-      <NavBar />
-      <main style={{ textAlign: 'center', marginTop: '50px', color: '#000000' }}>
-        <h1>Bienvenido a la tienda de jerseys Lebron Sunshine</h1>
-        <p>Este es un prototipo para mostrar el Navbar adaptado</p>
-      </main>
-    </div>
-  );
+    <>
+      <Store />
+    </>
+  )
 }
 
-export default App;
+export default App
