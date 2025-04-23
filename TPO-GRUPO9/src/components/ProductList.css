@@ -1,0 +1,5 @@
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Esto hará que haya 4 columnas iguales */
+  gap: 20px;
+}
