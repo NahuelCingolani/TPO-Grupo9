@@ -7,10 +7,10 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Página principal con la lista de productos */}
+        
         <Route path="/" element={<Store />} />
 
-        {/* Página individual para cada producto */}
+        
         <Route path="/product/:id" element={<ProductPage />} />
       </Routes>
     </Router>

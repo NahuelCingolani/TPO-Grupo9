@@ -1,19 +1,31 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import products from "../data/products.json"; // Importa los productos desde el JSON
-import "./ProductPage.css"; // Estilos específicos para la página del producto
-import Navbar from "../components/NavBar"; // Importa el componente Navbar
+import products from "../data/products.json";  
+import "./ProductPage.css"; 
+import Navbar from "../components/NavBar";  
 
 export default function ProductPage() {
-  const { id } = useParams(); // Obtén el `id` del producto desde la URL
-  const product = products.find((p) => p.id === parseInt(id)); // Encuentra el producto por su `id`
+  const { id } = useParams();
+  const product = products.find((p) => p.id === parseInt(id));
 
-  const [favorite, setFavorite] = useState(false); // Estado para favoritos
-  const [consultation, setConsultation] = useState(""); // Estado para la consulta del usuario
-
+  const [favorite, setFavorite] = useState(false);
+  const [consultation, setConsultation] = useState("");
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   if (!product) {
-    return <h1>Producto no encontrado</h1>; // Mensaje si el producto no existe
+    return <h1>Producto no encontrado</h1>;
   }
+
+  const handleNextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === product.images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? product.images.length - 1 : prevIndex - 1
+    );
+  };
 
   const handleAddToCart = () => {
     alert(`"${product.title}" fue agregado al carrito.`);
@@ -36,7 +48,7 @@ export default function ProductPage() {
     e.preventDefault();
     if (consultation.trim() !== "") {
       alert(`Consulta enviada: "${consultation}"`);
-      setConsultation(""); // Reseteamos el formulario
+      setConsultation("");
     } else {
       alert("Por favor, escribe algo en tu consulta.");
     }
@@ -44,37 +56,66 @@ export default function ProductPage() {
 
   return (
     <div className="product-page">
-      <Navbar /> {/* Agrega el Navbar aquí */}
+      <Navbar />
       <div className="product-page__details">
-        <img
-          src={product.image}
-          alt={product.title}
-          className="product-page__image"
-        />
+        <div className="product-page__carousel">
+          <button onClick={handlePrevImage} className="carousel-btn prev-btn">
+            &#8249;
+          </button>
+          <img
+            src={product.images[currentImageIndex]}
+            alt={`${product.title} - Imagen ${currentImageIndex + 1}`}
+            className="product-page__image"
+          />
+          <button onClick={handleNextImage} className="carousel-btn next-btn">
+            &#8250;
+          </button>
+        </div>
         <div className="product-page__info">
           <h1>{product.title}</h1>
-          <p><strong>Precio:</strong> {product.price}</p>
-          <p><strong>Equipo:</strong> {product.equipo}</p>
-          <p><strong>Descripción:</strong> {product.description || "Sin descripción disponible."}</p>
-          <p><strong>Envío:</strong> desde $500</p>
+          <p>
+            <strong>Precio:</strong> {product.price}
+          </p>
+          <p>
+            <strong>Equipo:</strong> {product.equipo}
+          </p>
+          <p>
+            <strong>Descripción:</strong>{" "}
+            {product.description || "Sin descripción disponible."}
+          </p>
+          <p>
+            <strong>Envío:</strong> desde $500
+          </p>
           <div className="product-page__actions">
-            <button onClick={handleBuyNow} className="btn btn-buy">Comprar</button>
-            <button onClick={handleAddToCart} className="btn btn-cart">Agregar al carrito</button>
+            <button onClick={handleBuyNow} className="btn btn-buy">
+              Comprar
+            </button>
+            <button onClick={handleAddToCart} className="btn btn-cart">
+              Agregar al carrito
+            </button>
             <button onClick={handleAddToFavorites} className="btn btn-favorite">
               {favorite ? "Quitar de favoritos" : "Agregar a favoritos"}
             </button>
           </div>
           <div className="product-page__sizes">
-            <label htmlFor="size-selector"><strong>Seleccionar talle:</strong></label>
+            <label htmlFor="size-selector">
+              <strong>Seleccionar talle:</strong>
+            </label>
             <select id="size-selector" className="size-selector">
               <option value="S">S (Disponible)</option>
-              <option value="M" disabled>M (No disponible)</option>
+              <option value="M" disabled>
+                M (No disponible)
+              </option>
               <option value="L">L (Disponible)</option>
-              <option value="XL" disabled>XL (No disponible)</option>
+              <option value="XL" disabled>
+                XL (No disponible)
+              </option>
             </select>
           </div>
           <div className="product-page__quantity">
-            <p><strong>Cantidad disponible:</strong> 6 unidades</p>
+            <p>
+              <strong>Cantidad disponible:</strong> 6 unidades
+            </p>
           </div>
         </div>
       </div>
@@ -87,7 +128,9 @@ export default function ProductPage() {
             placeholder="Escribe tu consulta aquí..."
             rows="4"
           />
-          <button type="submit" className="btn btn-submit">Enviar consulta</button>
+          <button type="submit" className="btn btn-submit">
+            Enviar consulta
+          </button>
         </form>
       </div>
     </div>

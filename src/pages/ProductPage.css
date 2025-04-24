@@ -3,7 +3,7 @@
     margin: 0 auto;
     padding: 20px;
     font-family: Arial, sans-serif;
-    margin-top: 60px; /* Espacio para el navbar */
+    margin-top: 60px; 
   }
   
   .product-page__details {
@@ -35,14 +35,14 @@
   .product-page__actions {
     margin-top: 20px;
     display: flex;
-    flex-direction: column; /* Cambia la dirección a columna */
-    gap: 10px; /* Espacio entre los botones */
+    flex-direction: column;  
+    gap: 15px; 
   }
   
   .btn {
-    padding: 10px 15px;
+    padding: 10px 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 14px;
   }
@@ -78,9 +78,8 @@
     border-radius: 5px;
     resize: none;
     margin-bottom: 10px;
-  }
+  } 
 
-/* Estilos generales para el navbar */
 .navbar {
   background-color: #333;
   color: white;
@@ -109,13 +108,11 @@
 .navbar__links a:hover {
   text-decoration: underline;
 }
-
-/* Ajuste para que el contenido no quede oculto detrás del navbar */
+ 
 .product-page {
-  margin-top: 150px; /* Ajusta este valor según la altura del navbar */
+  margin-top: 150px;  
 }
-
-/* Estilos para el selector de talles */
+ 
 .product-page__sizes {
   margin-top: 20px;
 }
@@ -127,10 +124,46 @@
   border-radius: 5px;
   font-size: 14px;
 }
-
-/* Estilos para el indicador de cantidad */
+ 
 .product-page__quantity {
   margin-top: 10px;
   font-size: 14px;
   color: #555;
+}
+ 
+.product-page__carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+
+.carousel-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }

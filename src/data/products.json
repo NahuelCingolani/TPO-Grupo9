@@ -4,16 +4,17 @@
     "title": "Camiseta LeBron Lakers City Edition",
     "price": "$75.000",
     "envio": "Envío gratis",
-    "image": "https://m.media-amazon.com/images/I/61aYKUlUpcL._AC_SX679_.jpg",
-    "equipo": "Lakers",
-    "link": "https://www.amazon.com/-/es/dp/B0C5KX3J6F?th=1"
+    "images": ["https://nikearprod.vtexassets.com/arquivos/ids/1265364-1200-1200?width=1200&height=1200&aspect=true",
+    "https://nikearprod.vtexassets.com/arquivos/ids/1267345-1200-1200?width=1200&height=1200&aspect=true"],
+    "equipo": "Lakers"
   },
   {
     "id": 2,
     "title": "Camiseta Stephen Curry Warriors Home",
     "price": "$70.000",
     "envio": "Envío gratis",
-    "image": "https://m.media-amazon.com/images/I/81bMUa13x5L._SY741_.jpg",
+    "images": ["https://sporting.vtexassets.com/arquivos/ids/1712642-1200-1200?v=638700395094000000&width=1200&height=1200&aspect=true",
+    "https://sporting.vtexassets.com/arquivos/ids/1712643-1200-1200?v=638700395100100000&width=1200&height=1200&aspect=true" ],
     "equipo": "Warriors"
   },
   {
@@ -21,7 +22,7 @@
     "title": "Camiseta Michael Jordan Bulls",
     "price": "$80.000",
     "envio": "Envío gratis",
-    "image": "https://shop.bulls.com/cdn/shop/files/BULLMZ2311D.jpg?v=1695843653&width=823",
+    "images": "https://shop.bulls.com/cdn/shop/files/BULLMZ2311D.jpg?v=1695843653&width=823",
     "equipo": "Bulls"
   },
   {
@@ -29,7 +30,7 @@
     "title": "Camiseta Kevin Durant Brooklyn Nets",
     "price": "$85.000",
     "envio": "Envío gratis",
-    "image": "https://m.media-amazon.com/images/I/717TYTxyx8L._AC_SX679_.jpg",
+    "images": "https://m.media-amazon.com/images/I/717TYTxyx8L._AC_SX679_.jpg",
     "equipo": "Nets"
   },
   {
@@ -37,7 +38,7 @@
     "title": "Camiseta Giannis Antetokounmpo Milwaukee Bucks",
     "price": "$90.000",
     "envio": "Envío gratis",
-    "image": "https://m.media-amazon.com/images/I/61jqq6gSeiL._AC_SX522_.jpg",
+    "images": "https://m.media-amazon.com/images/I/61jqq6gSeiL._AC_SX522_.jpg",
     "equipo": "Bucks"
   },
   {
@@ -45,7 +46,7 @@
     "title": "Camiseta Kawhi Leonard Clippers",
     "price": "$95.000",
     "envio": "Envío gratis",
-    "image": "https://m.media-amazon.com/images/I/61K6aRxr0hL._AC_SX679_.jpg",
+    "images": "https://m.media-amazon.com/images/I/61K6aRxr0hL._AC_SX679_.jpg",
     "equipo": "Clippers"
   },
   {
@@ -53,7 +54,7 @@
     "title": "Camiseta Luka Dončić Lakers",
     "price": "$80.000",
     "envio": "Envío gratis",
-    "image": "https://s1.img.bidsquare.com/item/xl/3009/30091555.jpeg?t=1TV2ZY",
+    "images": "https://s1.img.bidsquare.com/item/xl/3009/30091555.jpeg?t=1TV2ZY",
     "equipo": "Lakers"
   },
   {
@@ -61,7 +62,7 @@
     "title": "Camiseta Joel Embiid Philadelphia 76ers",
     "price": "$85.000",
     "envio": "Envío gratis",
-    "image": "https://m.media-amazon.com/images/I/61UaLoa-uyL._AC_SY679_.jpg",
+    "images": "https://m.media-amazon.com/images/I/61UaLoa-uyL._AC_SY679_.jpg",
     "equipo": "76ers"
   },
   {
@@ -69,7 +70,7 @@
     "title": "Camiseta Damian Lillard Milwaukee Bucks",
     "price": "$75.000",
     "envio": "Envío gratis",
-    "image": "https://m.media-amazon.com/images/I/71a2fKjy5ML._AC_SX679_.jpg",
+    "images": "https://m.media-amazon.com/images/I/71a2fKjy5ML._AC_SX679_.jpg",
     "equipo": "Bucks"
   },
   {
@@ -77,7 +78,7 @@
     "title": "Camiseta Lamelo Ball Hornets",
     "price": "$88.000",
     "envio": "Envío gratis",
-    "image": "https://throwbackstore.com.au/cdn/shop/products/Nike_Lamelo_Ball_Charlotte_Hornets_Icon_Edition_Jersey_CN8016-453_Back.jpg?v=1632117090&width=3000",
+    "images": "https://throwbackstore.com.au/cdn/shop/products/Nike_Lamelo_Ball_Charlotte_Hornets_Icon_Edition_Jersey_CN8016-453_Back.jpg?v=1632117090&width=3000",
     "equipo": "Hornets"
   }
 ]
