@@ -5,7 +5,7 @@
   width: 250px; /* Ancho fijo */
   min-height: 100vh; /* Altura mínima igual al viewport */
   position: fixed; /* Hacer que sea fijo */
-  top: 0;
+  top: 130px; /* Quedando bajo el navbar */
   left: 0;
   color: white; /* Contraste con el fondo */
 }
@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: column; /* Apilar las checkboxes */
   gap: 10px;
-  max-height: calc(100vh - 15rem); /* Ajusta la altura máxima disponible */
+  max-height: calc(100vh - 22rem); /* Ajusta la altura máxima disponible */
   overflow-y: auto; /* Agrega el scroll si el contenido excede el área visible */
 }
 

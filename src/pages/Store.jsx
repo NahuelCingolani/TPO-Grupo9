@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import NavBar from '../components/NavBar';
 import FilterSidebar from '../components/FilterSidebar';
-import ProductList from '../components/ProductList';
+import ProductList from '../Components/ProductList';
 import './Store.css';
 
 export default function Store() {
