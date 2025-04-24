@@ -6,7 +6,7 @@ const NavBar = () => {
   return (
     <nav className="navbar">
       <div className="nav-links navbar_left">
-        <a href="#jerseys" className="nav-link">Jerseys</a>
+        <a href="/" className="nav-link">Jerseys</a>
         <a href="#ofertas" className="nav-link">Ofertas</a>
         <a href="#novedades" className="nav-link">Novedades</a>
       </div>
@@ -16,7 +16,7 @@ const NavBar = () => {
       </div>
 
       <div className="nav-links navbar_right">
-        <a href="#login" className="nav-link">Login</a>
+        <a href="/Login" className="nav-link">Login</a>
         <a href="#carrito" className="nav-link">Carrito (0)</a>
       </div>
     </nav>
