@@ -1,18 +1,22 @@
 import React from 'react';
 import lakersLogo from '../Assets/lebron.png';
 import './NavBar.css'; 
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
     <nav className="navbar">
       <div className="nav-links navbar_left">
-        <a href="/" className="nav-link">Jerseys</a>
+        <a href="/store" className="nav-link">Jerseys</a>
         <a href="#ofertas" className="nav-link">Ofertas</a>
         <a href="#novedades" className="nav-link">Novedades</a>
       </div>
 
       <div className="logo-container">
-        <img src={lakersLogo} alt="Lakers Logo" className="logo" />
+        <Link to ="/">
+          <img src={lakersLogo} alt="Lakers Logo" className="logo" />
+        </Link>
+        
       </div>
 
       <div className="nav-links navbar_right">

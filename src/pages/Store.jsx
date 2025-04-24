@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import NavBar from '../components/NavBar';
+import NavBar from '../Components/NavBar';
 import FilterSidebar from '../components/FilterSidebar';
 import ProductList from '../Components/ProductList';
 import './Store.css';
@@ -9,7 +9,7 @@ export default function Store() {
 
   return (
     <>
-      <NavBar />                                           {/* 👈 Enganchás la barra arriba */}
+      <NavBar />                                           
       <div className="body-content">      
         <div className="store-page">
           <FilterSidebar onFilterChange={setSelectedTeam} />
