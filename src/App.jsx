@@ -4,6 +4,8 @@ import ProductPage from './pages/ProductPage';
 import Login from './pages/Login';
 import Registro from './pages/Registro';
 import Home from './Components/Home';
+import Carrito from './pages/Carrito';
+import Checkout from './pages/Checkout';
 import './App.css';
 
 function App() {
@@ -15,6 +17,8 @@ function App() {
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registro" element={<Registro />} /> 
+        <Route path="/carrito" element={<Carrito />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </Router>
   );

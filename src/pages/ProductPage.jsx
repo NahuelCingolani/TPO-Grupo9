@@ -3,14 +3,17 @@ import { useParams } from "react-router-dom";
 import products from "../data/products.json";  
 import "./ProductPage.css"; 
 import Navbar from "../components/NavBar";  
+import { useCart } from "../context/CartContext"; // ✅ Importar contexto
 
 export default function ProductPage() {
   const { id } = useParams();
   const product = products.find((p) => p.id === parseInt(id));
+  const { addToCart } = useCart(); // ✅ Usar contexto
 
   const [favorite, setFavorite] = useState(false);
   const [consultation, setConsultation] = useState("");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   if (!product) {
     return <h1>Producto no encontrado</h1>;
   }
@@ -28,6 +31,14 @@ export default function ProductPage() {
   };
 
   const handleAddToCart = () => {
+    const productForCart = {
+      id: product.id,
+      nombre: product.title, // 🔁 Cambiamos a la propiedad que usa el contexto
+      precio: parseFloat(product.price.replace(/\$/g, "").replace(/\./g, "")),
+      imagen: product.images[0]
+    };
+
+    addToCart(productForCart); // ✅ Usar función del contexto
     alert(`"${product.title}" fue agregado al carrito.`);
   };
 
@@ -41,7 +52,7 @@ export default function ProductPage() {
       favorite
         ? `"${product.title}" fue eliminado de tus favoritos.`
         : `"${product.title}" fue agregado a tus favoritos.`
-    );
+    ); 
   };
 
   const handleConsultationSubmit = (e) => {
@@ -73,49 +84,28 @@ export default function ProductPage() {
         </div>
         <div className="product-page__info">
           <h1>{product.title}</h1>
-          <p>
-            <strong>Precio:</strong> {product.price}
-          </p>
-          <p>
-            <strong>Equipo:</strong> {product.equipo}
-          </p>
-          <p>
-            <strong>Descripción:</strong>{" "}
-            {product.description || "Sin descripción disponible."}
-          </p>
-          <p>
-            <strong>Envío:</strong> desde $500
-          </p>
+          <p><strong>Precio:</strong> {product.price}</p>
+          <p><strong>Equipo:</strong> {product.equipo}</p>
+          <p><strong>Descripción:</strong> {product.description || "Sin descripción disponible."}</p>
+          <p><strong>Envío:</strong> desde $500</p>
           <div className="product-page__actions">
-            <button onClick={handleBuyNow} className="btn btn-buy">
-              Comprar
-            </button>
-            <button onClick={handleAddToCart} className="btn btn-cart">
-              Agregar al carrito
-            </button>
+            <button onClick={handleBuyNow} className="btn btn-buy">Comprar</button>
+            <button onClick={handleAddToCart} className="btn btn-cart">Agregar al carrito</button>
             <button onClick={handleAddToFavorites} className="btn btn-favorite">
               {favorite ? "Quitar de favoritos" : "Agregar a favoritos"}
             </button>
           </div>
           <div className="product-page__sizes">
-            <label htmlFor="size-selector">
-              <strong>Seleccionar talle:</strong>
-            </label>
+            <label htmlFor="size-selector"><strong>Seleccionar talle:</strong></label>
             <select id="size-selector" className="size-selector">
               <option value="S">S (Disponible)</option>
-              <option value="M" disabled>
-                M (No disponible)
-              </option>
+              <option value="M" disabled>M (No disponible)</option>
               <option value="L">L (Disponible)</option>
-              <option value="XL" disabled>
-                XL (No disponible)
-              </option>
+              <option value="XL" disabled>XL (No disponible)</option>
             </select>
           </div>
           <div className="product-page__quantity">
-            <p>
-              <strong>Cantidad disponible:</strong> 6 unidades
-            </p>
+            <p><strong>Cantidad disponible:</strong> 6 unidades</p>
           </div>
         </div>
       </div>
@@ -128,9 +118,7 @@ export default function ProductPage() {
             placeholder="Escribe tu consulta aquí..."
             rows="4"
           />
-          <button type="submit" className="btn btn-submit">
-            Enviar consulta
-          </button>
+          <button type="submit" className="btn btn-submit">Enviar consulta</button>
         </form>
       </div>
     </div>
