@@ -31,15 +31,21 @@ export default function ProductPage() {
   };
 
   const handleAddToCart = () => {
+    if (!selectedSize) {
+      alert("Por favor selecciona un talle");
+      return;
+    }
+  
     const productForCart = {
       id: product.id,
-      nombre: product.title, // 🔁 Cambiamos a la propiedad que usa el contexto
+      nombre: product.title,
       precio: parseFloat(product.price.replace(/\$/g, "").replace(/\./g, "")),
-      imagen: product.images[0]
+      imagen: product.images[0],
+      talle: selectedSize, // <- Añadimos el talle
     };
-
-    addToCart(productForCart); // ✅ Usar función del contexto
-    alert(`"${product.title}" fue agregado al carrito.`);
+  
+    addToCart(productForCart);
+    alert(`"${product.title}" (Talle: ${selectedSize}) fue agregado al carrito.`);
   };
 
   const handleBuyNow = () => {
@@ -64,6 +70,8 @@ export default function ProductPage() {
       alert("Por favor, escribe algo en tu consulta.");
     }
   };
+
+  const [selectedSize, setSelectedSize] = useState("");
 
   return (
     <div className="product-page">
@@ -97,15 +105,30 @@ export default function ProductPage() {
           </div>
           <div className="product-page__sizes">
             <label htmlFor="size-selector"><strong>Seleccionar talle:</strong></label>
-            <select id="size-selector" className="size-selector">
-              <option value="S">S (Disponible)</option>
-              <option value="M" disabled>M (No disponible)</option>
-              <option value="L">L (Disponible)</option>
-              <option value="XL" disabled>XL (No disponible)</option>
+            <select 
+              id="size-selector" 
+              className="size-selector"
+              value={selectedSize}
+              onChange={(e) => setSelectedSize(e.target.value)}
+            >
+              <option value="">-- Selecciona talle --</option>
+              {Object.entries(product.stock || {}).map(([size, quantity]) => (
+                <option 
+                  key={size} 
+                  value={size}
+                  disabled={quantity === 0}
+                  className={quantity === 0 ? 'out-of-stock' : ''}
+                >
+                  {size} {quantity === 0 ? '(Agotado)' : `(Disponible: ${quantity})`}
+                </option>
+              ))}
             </select>
           </div>
+
           <div className="product-page__quantity">
-            <p><strong>Cantidad disponible:</strong> 6 unidades</p>
+            {selectedSize && (
+              <p><strong>Cantidad disponible:</strong> {product.stock[selectedSize]} unidades</p>
+            )}
           </div>
         </div>
       </div>

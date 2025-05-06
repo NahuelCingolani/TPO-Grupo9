@@ -19,17 +19,18 @@ const Carrito = () => {
       <h2>Carrito de Compras</h2>
       <ul className="carrito-lista">
         {cartItems.map((item) => (
-          <li key={item.id} className="carrito-item">
+          <li key={`${item.id}-${item.talle}`}className="carrito-item">
             <img src={item.imagen} alt={item.nombre} className="carrito-img" />
             <div className="carrito-detalle">
               <h4>{item.nombre}</h4>
               <p>${item.precio.toLocaleString()}</p>
+              {item.talle && <p><strong>Talle:</strong> {item.talle}</p>}
               <div className="cantidad-controles">
-                <button onClick={() => updateQuantity(item.id, -1)}>-</button>
+                <button onClick={() => updateQuantity(item.id, -1,item.talle)}>-</button>
                 <span>{item.quantity}</span>
-                <button onClick={() => updateQuantity(item.id, 1)}>+</button>
+                <button onClick={() => updateQuantity(item.id, 1,item.talle)}>+</button>
               </div>
-              <button onClick={() => removeFromCart(item.id)} className="btn-borrar">
+              <button onClick={() => removeFromCart(item.id, item.talle)} className="btn-borrar">
                 Borrar
               </button>
             </div>

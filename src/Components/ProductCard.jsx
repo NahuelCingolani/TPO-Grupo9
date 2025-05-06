@@ -6,7 +6,7 @@ export default function ProductCard({ product }) {
     <div className="product-card">
       <Link to={`/product/${product.id}`} className="product-link">
       <img
-        src={Array.isArray(product.images) ? product.images[0] : product.images}
+        src={product.image}
         alt={product.title}
       />
 

@@ -8,13 +8,16 @@ export const useCart = () => useContext(CartContext);
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
-  // Agregar al carrito
+// Agregar al carrito (considera talle)
   const addToCart = (product) => {
     setCartItems((prevItems) => {
-      const existingItem = prevItems.find((item) => item.id === product.id);
+      const existingItem = prevItems.find((item) => 
+        item.id === product.id && item.talle === product.talle
+      );
+      
       if (existingItem) {
         return prevItems.map((item) =>
-          item.id === product.id
+          item.id === product.id && item.talle === product.talle
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
@@ -23,16 +26,18 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  // Eliminar producto del carrito
-  const removeFromCart = (id) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  // Eliminar producto (considera talle)
+  const removeFromCart = (id, talle) => {
+    setCartItems((prevItems) => 
+      prevItems.filter((item) => !(item.id === id && item.talle === talle))
+    );
   };
 
   // Actualizar cantidad (sumar o restar)
-  const updateQuantity = (id, delta) => {
+  const updateQuantity = (id, delta, talle) => {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
-        item.id === id
+        item.id === id && item.talle === talle
           ? { ...item, quantity: Math.max(item.quantity + delta, 1) }
           : item
       )
