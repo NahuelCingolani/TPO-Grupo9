@@ -1,9 +1,24 @@
 import { useCart } from '../context/CartContext';
 import { Link } from 'react-router-dom';
-import './Carrito.css'; // (opcional, para darle estilo)
+import './Carrito.css';
 
 const Carrito = () => {
-  const { cartItems, updateQuantity, removeFromCart, getTotal } = useCart();
+  const { 
+    cartItems, 
+    updateQuantity, 
+    removeFromCart, 
+    getTotal,
+    getAvailableStock 
+  } = useCart();
+
+  const handleIncreaseQuantity = (item) => {
+    const availableStock = getAvailableStock(item.id, item.talle);
+    if (item.quantity < availableStock) {
+      updateQuantity(item.id, 1, item.talle);
+    } else {
+      alert(`No puedes agregar más. Stock máximo: ${availableStock}`);
+    }
+  };
 
   if (cartItems.length === 0) {
     return (
@@ -18,24 +33,47 @@ const Carrito = () => {
     <div className="carrito-container">
       <h2>Carrito de Compras</h2>
       <ul className="carrito-lista">
-        {cartItems.map((item) => (
-          <li key={`${item.id}-${item.talle}`}className="carrito-item">
-            <img src={item.imagen} alt={item.nombre} className="carrito-img" />
-            <div className="carrito-detalle">
-              <h4>{item.nombre}</h4>
-              <p>${item.precio.toLocaleString()}</p>
-              {item.talle && <p><strong>Talle:</strong> {item.talle}</p>}
-              <div className="cantidad-controles">
-                <button onClick={() => updateQuantity(item.id, -1,item.talle)}>-</button>
-                <span>{item.quantity}</span>
-                <button onClick={() => updateQuantity(item.id, 1,item.talle)}>+</button>
+        {cartItems.map((item) => {
+          const availableStock = getAvailableStock(item.id, item.talle);
+          return (
+            <li key={`${item.id}-${item.talle}`} className="carrito-item">
+              <img src={item.imagen} alt={item.nombre} className="carrito-img" />
+              <div className="carrito-detalle">
+                <h4>{item.nombre}</h4>
+                <p>${item.precio.toLocaleString()}</p>
+                {item.talle && (
+                  <>
+                    <p><strong>Talle:</strong> {item.talle}</p>
+                    <p className="stock-info">
+                      Disponibles: {availableStock - item.quantity} restantes
+                    </p>
+                  </>
+                )}
+                <div className="cantidad-controles">
+                  <button 
+                    onClick={() => updateQuantity(item.id, -1, item.talle)}
+                    disabled={item.quantity <= 1}
+                  >
+                    -
+                  </button>
+                  <span>{item.quantity}</span>
+                  <button 
+                    onClick={() => handleIncreaseQuantity(item)}
+                    disabled={item.quantity >= availableStock}
+                  >
+                    +
+                  </button>
+                </div>
+                <button 
+                  onClick={() => removeFromCart(item.id, item.talle)} 
+                  className="btn-borrar"
+                >
+                  Eliminar
+                </button>
               </div>
-              <button onClick={() => removeFromCart(item.id, item.talle)} className="btn-borrar">
-                Borrar
-              </button>
-            </div>
-          </li>
-        ))}
+            </li>
+          );
+        })}
       </ul>
       <div className="carrito-total">
         <h3>Total: ${getTotal().toLocaleString()}</h3>

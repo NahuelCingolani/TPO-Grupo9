@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import products from "../data/products.json";  
 import "./ProductPage.css"; 
-import Navbar from "../components/NavBar";  
+import Navbar from "../Components/NavBar";  
 import { useCart } from "../context/CartContext"; // ✅ Importar contexto
 
 export default function ProductPage() {
