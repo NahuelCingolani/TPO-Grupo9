@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import products from "../data/products.json";  
 import "./ProductPage.css"; 
 import Navbar from "../Components/NavBar";  
@@ -13,21 +13,31 @@ export default function ProductPage() {
   const [favorite, setFavorite] = useState(false);
   const [consultation, setConsultation] = useState("");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [selectedSize, setSelectedSize] = useState("");
+  const [isAnimating, setIsAnimating] = useState(false); // Estado para controlar la animación
 
   if (!product) {
     return <h1>Producto no encontrado</h1>;
   }
 
   const handleNextImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === product.images.length - 1 ? 0 : prevIndex + 1
-    );
+    setIsAnimating(true); // Activa la animación
+    setTimeout(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === product.images.length - 1 ? 0 : prevIndex + 1
+      );
+      setIsAnimating(false); // Desactiva la animación después de cambiar la imagen
+    }, 500); // Duración de la animación (debe coincidir con la duración en CSS)
   };
 
   const handlePrevImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? product.images.length - 1 : prevIndex - 1
-    );
+    setIsAnimating(true); // Activa la animación
+    setTimeout(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === 0 ? product.images.length - 1 : prevIndex - 1
+      );
+      setIsAnimating(false); // Desactiva la animación después de cambiar la imagen
+    }, 500); // Duración de la animación (debe coincidir con la duración en CSS)
   };
 
   const handleAddToCart = () => {
@@ -71,22 +81,26 @@ export default function ProductPage() {
     }
   };
 
-  const [selectedSize, setSelectedSize] = useState("");
+  const similarProducts = products.filter((p) => p.id !== product.id); // Filtra productos diferentes al actual
 
   return (
     <div className="product-page">
       <Navbar />
       <div className="product-page__details">
         <div className="product-page__carousel">
-          <button onClick={handlePrevImage} className="carousel-btn prev-btn">
+          <button onClick={handlePrevImage} className="carousel-btn modern-btn prev-btn">
             &#8249;
           </button>
-          <img
-            src={product.images[currentImageIndex]}
-            alt={`${product.title} - Imagen ${currentImageIndex + 1}`}
-            className="product-page__image"
-          />
-          <button onClick={handleNextImage} className="carousel-btn next-btn">
+          <div className="carousel-image-container">
+            <img
+              src={product.images[currentImageIndex]}
+              alt={`${product.title} - Imagen ${currentImageIndex + 1}`}
+              className={`product-page__image animated-image ${
+                isAnimating ? "fade-in" : ""
+              }`}
+            />
+          </div>
+          <button onClick={handleNextImage} className="carousel-btn modern-btn next-btn">
             &#8250;
           </button>
         </div>
@@ -132,6 +146,28 @@ export default function ProductPage() {
           </div>
         </div>
       </div>
+
+      {/* Productos similares */}
+      <div className="similar-products">
+        <h2>Productos similares</h2>
+        <div className="similar-products__carousel">
+          {similarProducts.map((similarProduct) => (
+            <div key={similarProduct.id} className="similar-product">
+              <img
+                src={similarProduct.images[0]}
+                alt={similarProduct.title}
+                className="similar-product__image"
+              />
+              <h3 className="similar-product__title">{similarProduct.title}</h3>
+              <p className="similar-product__price">{similarProduct.price}</p>
+              <Link to={`/product/${similarProduct.id}`} className="btn btn-cart">
+                Ver producto
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="product-page__consultation">
         <h2>Dejar una consulta</h2>
         <form onSubmit={handleConsultationSubmit}>
