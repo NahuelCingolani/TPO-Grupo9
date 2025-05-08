@@ -1,30 +1,38 @@
 import { useState, useEffect } from 'react';
-import allProducts from '../data/products.json';
 import ProductCard from './ProductCard';
 import './ProductList.css';
 
 export default function ProductList({ selectedTeam }) {
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
-  // Filtrar productos según el equipo seleccionado
+  // Cargar productos desde json-server
+  useEffect(() => {
+    fetch('http://localhost:3000/products')
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+      .catch((error) => console.error('Error cargando productos:', error));
+  }, []);
+
+  // Filtrar productos cuando cambian los filtros
   useEffect(() => {
     if (selectedTeam === 'Todos') {
-      setProducts(allProducts); // Mostrar todos los productos
+      setFilteredProducts(products);
     } else if (Array.isArray(selectedTeam)) {
-      const filtered = allProducts.filter(p => selectedTeam.includes(p.equipo));
-      setProducts(filtered); // Filtrar productos por equipo
+      const filtered = products.filter((p) => selectedTeam.includes(p.equipo));
+      setFilteredProducts(filtered);
     } else {
-      setProducts([]); // Si no hay equipo válido, limpiar productos
+      setFilteredProducts([]);
     }
-  }, [selectedTeam]);
+  }, [selectedTeam, products]);
 
   return (
     <div className="product-list">
-      {products.length > 0 ? (
-        // Renderizar una tarjeta por cada producto
-        products.map(product => <ProductCard key={product.id} product={product} />)
+      {filteredProducts.length > 0 ? (
+        filteredProducts.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))
       ) : (
-        // Mensaje si no se encuentran productos
         <p>No se encontraron productos.</p>
       )}
     </div>

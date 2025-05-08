@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; 
-import NavBar from '../components/NavBar';
 import './Login.css';
 
 function Login() {
@@ -14,7 +13,6 @@ function Login() {
 
   return (
     <>
-      <NavBar /> 
       <div className="login-container">
         <form className="login-form" onSubmit={handleSubmit}>
           <h1>Iniciar Sesión</h1>

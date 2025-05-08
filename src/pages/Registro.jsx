@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import NavBar from '../components/NavBar';
 import './Registro.css';
 
 function Registro() {
@@ -15,7 +14,6 @@ const handleSubmit = (e) => {
 
 return (
     <>
-      <NavBar /> {/* Incluye el NavBar */}
     <div className="registro-container">
         <form className="registro-form" onSubmit={handleSubmit}>
         <h1>Crear Cuenta</h1>

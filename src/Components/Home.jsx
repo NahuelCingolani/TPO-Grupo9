@@ -1,12 +1,10 @@
 import React from 'react';
-import NavBar from '../Components/NavBar';
 import './Home.css';
 import bannerImage from '../Assets/banner1.png'; // Cambiá por tu imagen de banner
 
 export default function Home() {
     return (
     <>
-    <NavBar />
     <div className="home-page">
         <div className="banner">
         <img src={bannerImage} alt="Banner Principal" className="banner-image" />
