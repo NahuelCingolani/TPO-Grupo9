@@ -1,8 +1,18 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import './Home.css';
 import bannerImage from '../Assets/banner1.png'; // Cambiá por tu imagen de banner
 
+import CategoriasEquipos from './CategoriasEquipos';
+import ProductList from './ProductList';
+
 export default function Home() {
+    const [equipoSeleccionado, setEquipoSeleccionado] = useState(null);
+
+    const handleEquipoClick = (equipo) => {
+        setEquipoSeleccionado(equipo);
+    };
+
     return (
     <>
     <div className="home-page">
@@ -10,7 +20,14 @@ export default function Home() {
         <img src={bannerImage} alt="Banner Principal" className="banner-image" />
         </div>
 
-        {/* Sección Informativa debajo del banner */}
+        <CategoriasEquipos onSelectEquipo={handleEquipoClick}/>
+
+        {equipoSeleccionado && (
+        <ProductList selectedTeam={equipoSeleccionado} />
+        )}
+
+        
+    
         <div className="info-section">
         <div className="info-card">
             <h3>ENVIOS A TODO EL PAÍS</h3>

@@ -1,0 +1,30 @@
+.categorias-equipos-container {
+  padding: 2rem;
+  background-color: #1a1a1a;
+  color: white;
+  text-align: center;
+}
+
+.equipos-lista {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.equipo-btn {
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.equipo-btn:hover {
+  background-color: #ffd700;
+  color: #000;
+  border-color: #ffd700;
+}

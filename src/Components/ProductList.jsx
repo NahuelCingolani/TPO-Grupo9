@@ -18,8 +18,8 @@ export default function ProductList({ selectedTeam }) {
   useEffect(() => {
     if (selectedTeam === 'Todos') {
       setFilteredProducts(products);
-    } else if (Array.isArray(selectedTeam)) {
-      const filtered = products.filter((p) => selectedTeam.includes(p.equipo));
+    } else if (typeof selectedTeam === 'string') {
+      const filtered = products.filter((p) => p.equipo === selectedTeam);
       setFilteredProducts(filtered);
     } else {
       setFilteredProducts([]);

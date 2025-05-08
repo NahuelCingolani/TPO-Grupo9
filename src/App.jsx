@@ -7,6 +7,8 @@ import Home from './Components/Home';
 import Carrito from './pages/Carrito';
 import Checkout from './pages/Checkout';
 import NavBar from './Components/NavBar';
+import ProductosPorEquipo from './pages/ProductosPorEquipo'; // o donde lo ubiques
+
 import './App.css';
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
         <Route path="/registro" element={<Registro />} /> 
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/equipo/:nombreEquipo" element={<ProductosPorEquipo />} />
+
       </Routes>
     </Router>
   );
