@@ -1,43 +1,47 @@
-import React, { useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import products from "../data/products.json";  
-import "./ProductPage.css"; 
-import Navbar from "../Components/NavBar";  
-import { useCart } from "../context/CartContext"; // ✅ Importar contexto
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import "./ProductPage.css";
+import Navbar from "../Components/NavBar";
+import { useCart } from "../context/CartContext";
 
 export default function ProductPage() {
   const { id } = useParams();
-  const product = products.find((p) => p.id === parseInt(id));
-  const { addToCart } = useCart(); // ✅ Usar contexto
+  const { addToCart } = useCart();
 
+  const [product, setProduct] = useState(null);
   const [favorite, setFavorite] = useState(false);
   const [consultation, setConsultation] = useState("");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState("");
-  const [isAnimating, setIsAnimating] = useState(false); // Estado para controlar la animación
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  if (!product) {
-    return <h1>Producto no encontrado</h1>;
-  }
+  useEffect(() => {
+    fetch(`http://localhost:3000/products/${id}`)
+      .then((res) => res.json())
+      .then((data) => setProduct(data))
+      .catch((err) => console.error("Error al cargar el producto:", err));
+  }, [id]);
+
+  if (!product) return <h1>Producto no encontrado</h1>;
 
   const handleNextImage = () => {
-    setIsAnimating(true); // Activa la animación
+    setIsAnimating(true);
     setTimeout(() => {
       setCurrentImageIndex((prevIndex) =>
         prevIndex === product.images.length - 1 ? 0 : prevIndex + 1
       );
-      setIsAnimating(false); // Desactiva la animación después de cambiar la imagen
-    }, 500); // Duración de la animación (debe coincidir con la duración en CSS)
+      setIsAnimating(false);
+    }, 500);
   };
 
   const handlePrevImage = () => {
-    setIsAnimating(true); // Activa la animación
+    setIsAnimating(true);
     setTimeout(() => {
       setCurrentImageIndex((prevIndex) =>
         prevIndex === 0 ? product.images.length - 1 : prevIndex - 1
       );
-      setIsAnimating(false); // Desactiva la animación después de cambiar la imagen
-    }, 500); // Duración de la animación (debe coincidir con la duración en CSS)
+      setIsAnimating(false);
+    }, 500);
   };
 
   const handleAddToCart = () => {
@@ -45,15 +49,15 @@ export default function ProductPage() {
       alert("Por favor selecciona un talle");
       return;
     }
-  
+
     const productForCart = {
       id: product.id,
       nombre: product.title,
       precio: parseFloat(product.price.replace(/\$/g, "").replace(/\./g, "")),
       imagen: product.images[0],
-      talle: selectedSize, // <- Añadimos el talle
+      talle: selectedSize,
     };
-  
+
     addToCart(productForCart);
     alert(`"${product.title}" (Talle: ${selectedSize}) fue agregado al carrito.`);
   };
@@ -68,7 +72,7 @@ export default function ProductPage() {
       favorite
         ? `"${product.title}" fue eliminado de tus favoritos.`
         : `"${product.title}" fue agregado a tus favoritos.`
-    ); 
+    );
   };
 
   const handleConsultationSubmit = (e) => {
@@ -80,8 +84,6 @@ export default function ProductPage() {
       alert("Por favor, escribe algo en tu consulta.");
     }
   };
-
-  const similarProducts = products.filter((p) => p.id !== product.id); // Filtra productos diferentes al actual
 
   return (
     <div className="product-page">
@@ -104,12 +106,14 @@ export default function ProductPage() {
             &#8250;
           </button>
         </div>
+
         <div className="product-page__info">
           <h1>{product.title}</h1>
           <p><strong>Precio:</strong> {product.price}</p>
           <p><strong>Equipo:</strong> {product.equipo}</p>
           <p><strong>Descripción:</strong> {product.description || "Sin descripción disponible."}</p>
           <p><strong>Envío:</strong> desde $500</p>
+
           <div className="product-page__actions">
             <button onClick={handleBuyNow} className="btn btn-buy">Comprar</button>
             <button onClick={handleAddToCart} className="btn btn-cart">Agregar al carrito</button>
@@ -117,54 +121,32 @@ export default function ProductPage() {
               {favorite ? "Quitar de favoritos" : "Agregar a favoritos"}
             </button>
           </div>
+
           <div className="product-page__sizes">
             <label htmlFor="size-selector"><strong>Seleccionar talle:</strong></label>
-            <select 
-              id="size-selector" 
+            <select
+              id="size-selector"
               className="size-selector"
               value={selectedSize}
               onChange={(e) => setSelectedSize(e.target.value)}
             >
               <option value="">-- Selecciona talle --</option>
               {Object.entries(product.stock || {}).map(([size, quantity]) => (
-                <option 
-                  key={size} 
+                <option
+                  key={size}
                   value={size}
                   disabled={quantity === 0}
-                  className={quantity === 0 ? 'out-of-stock' : ''}
+                  className={quantity === 0 ? "out-of-stock" : ""}
                 >
-                  {size} {quantity === 0 ? '(Agotado)' : `(Disponible: ${quantity})`}
+                  {size} {quantity === 0 ? "(Agotado)" : `(Disponible: ${quantity})`}
                 </option>
               ))}
             </select>
           </div>
 
-          <div className="product-page__quantity">
-            {selectedSize && (
-              <p><strong>Cantidad disponible:</strong> {product.stock[selectedSize]} unidades</p>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Productos similares */}
-      <div className="similar-products">
-        <h2>Productos similares</h2>
-        <div className="similar-products__carousel">
-          {similarProducts.map((similarProduct) => (
-            <div key={similarProduct.id} className="similar-product">
-              <img
-                src={similarProduct.images[0]}
-                alt={similarProduct.title}
-                className="similar-product__image"
-              />
-              <h3 className="similar-product__title">{similarProduct.title}</h3>
-              <p className="similar-product__price">{similarProduct.price}</p>
-              <Link to={`/product/${similarProduct.id}`} className="btn btn-cart">
-                Ver producto
-              </Link>
-            </div>
-          ))}
+          {selectedSize && (
+            <p><strong>Cantidad disponible:</strong> {product.stock[selectedSize]} unidades</p>
+          )}
         </div>
       </div>
 

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import lakersLogo from '../Assets/lebron.png';
 import './NavBar.css'; 
 import { Link } from 'react-router-dom';
-import { useCart } from '../context/CartContext'; // ✅ Importar contexto
+import { useCart } from '../context/CartContext'; 
 
 const NavBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const { cartItems } = useCart(); // ✅ Usar el carrito
+  const { cartItems } = useCart(); //
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0); // ✅ Contador real
 
   const handleSearchChange = (e) => {
@@ -21,10 +21,11 @@ const NavBar = () => {
   return (
     <nav className="navbar">
       <div className="nav-links navbar_left">
-        <a href="/store" className="nav-link">Jerseys</a>
-        <a href="#ofertas" className="nav-link">Ofertas</a>
-        <a href="#novedades" className="nav-link">Novedades</a>
+      <Link to="/store" className="nav-link">Jerseys</Link>
+      <a href="#ofertas" className="nav-link">Ofertas</a>
+      <a href="#novedades" className="nav-link">Novedades</a>
       </div>
+
 
       <div className="logo-container">
         <Link to="/">
