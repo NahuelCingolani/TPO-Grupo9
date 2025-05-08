@@ -2,14 +2,26 @@ import { createContext, useContext, useState, useEffect } from 'react';
 
 const CartContext = createContext();
 
-// Hook para usar el contexto
 export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [products, setProducts] = useState([]);
 
-  // Fetch de productos desde el servidor
+  // ✅ Cargar carrito desde localStorage al iniciar
+  useEffect(() => {
+    const storedCart = localStorage.getItem("cartItems");
+    if (storedCart) {
+      setCartItems(JSON.parse(storedCart));
+    }
+  }, []);
+
+  // ✅ Guardar carrito en localStorage cuando cambia
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  // Cargar productos del servidor
   useEffect(() => {
     fetch('http://localhost:3000/products')
       .then(res => res.json())
@@ -77,7 +89,10 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  const clearCart = () => setCartItems([]);
+  const clearCart = () => {
+    setCartItems([]);
+    localStorage.removeItem("cartItems"); // ✅ limpiar también de localStorage
+  };
 
   const getTotal = () => {
     return cartItems.reduce((total, item) => total + item.precio * item.quantity, 0);
@@ -93,7 +108,7 @@ export const CartProvider = ({ children }) => {
         clearCart,
         getTotal,
         getAvailableStock,
-        products // Exponer los productos también si otros componentes los necesitan
+        products
       }}
     >
       {children}
