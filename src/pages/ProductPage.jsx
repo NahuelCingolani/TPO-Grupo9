@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import products from "../data/products.json";  
 import "./ProductPage.css"; 
 import Navbar from "../Components/NavBar";  
 import { useCart } from "../context/CartContext"; // ✅ Importar contexto
