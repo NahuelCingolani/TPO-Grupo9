@@ -9,7 +9,6 @@ export default function Store() {
 
   return (
     <>
-      <NavBar />                                           
       <div className="body-content">      
         <div className="store-page">
           <FilterSidebar onFilterChange={setSelectedTeam} />

@@ -6,11 +6,13 @@ import Registro from './pages/Registro';
 import Home from './Components/Home';
 import Carrito from './pages/Carrito';
 import Checkout from './pages/Checkout';
+import NavBar from './Components/NavBar';
 import './App.css';
 
 function App() {
   return (
     <Router>
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path='/store' element={<Store/>}/>
