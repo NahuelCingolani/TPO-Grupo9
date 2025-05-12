@@ -179,6 +179,24 @@
         "L": 1,
         "XL": 4
       }
+    },
+    {
+      "id": "91",
+      "title": "Camiseta Brunson",
+      "price": "$80.000",
+      "envio": "Envío gratis",
+      "equipo": "Knicks",
+      "image": "https://m.media-amazon.com/images/I/61Q4RLoJS3L._AC_SY550_.jpg",
+      "images": [
+        "https://fanatics.frgimages.com/new-york-knicks/youth-nike-jalen-brunson-blue-new-york-knicks-swingman-jersey-icon-edition_ss5_p-200465220+pv-2+u-7zixjilygt3xqb3g8jxl+v-8xeovojfqfjayjhdkcgx.jpg?_hv=2&w=900",
+        "https://fanatics.frgimages.com/new-york-knicks/youth-nike-jalen-brunson-blue-new-york-knicks-swingman-jersey-icon-edition_ss5_p-200465220+pv-3+u-7zixjilygt3xqb3g8jxl+v-ao8huxrr7p1l5ljeyjfm.jpg?_hv=2&w=900"
+      ],
+      "stock": {
+        "S": 1,
+        "M": 2,
+        "L": 3,
+        "XL": 4
+      }
     }
   ]
 }

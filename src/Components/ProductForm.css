@@ -33,6 +33,24 @@
     margin-bottom: 1rem;
 }
 
+.product-form select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    box-sizing: border-box;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+
+.product-form select:focus {
+    outline: none;
+    border-color: #4caf50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
 .product-form legend {
     font-weight: bold;
     padding: 0 0.5rem;
@@ -65,4 +83,21 @@
     outline: none;
     border-color: #4caf50;
     box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.price-wrapper {
+  position: relative;
+}
+
+.price-symbol {
+  position: absolute;
+  left: 10px;
+  top: 35%;
+  transform: translateY(-50%);
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.price-wrapper input[type="text"] {
+  padding-left: 1.5rem;
 }
