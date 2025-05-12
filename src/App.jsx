@@ -15,6 +15,9 @@ import ManageStockPage from './pages/ManageStockPage';
 import EditarProductosLista from './pages/EditarProductosLista';
 import EditarProductoPage from './pages/EditarProductoPage';
 
+
+import Contacto from './pages/Contacto'; 
+
 function App() {
   return (
     <Router>
@@ -33,6 +36,9 @@ function App() {
         <Route path="/admin/stock" element={<ManageStockPage />} />
         <Route path="/admin/products/edit" element={<EditarProductosLista />} />
         <Route path="/admin/products/edit/:id" element={<EditarProductoPage />} />
+
+        <Route path="/contacto" element={<Contacto />} />
+
         
       </Routes>
     </Router>
