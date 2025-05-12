@@ -12,6 +12,8 @@ import './App.css';
 import AdminPage from './pages/AdminPage';
 import AddProductPage from './pages/AddProductPage';
 import ManageStockPage from './pages/ManageStockPage';
+import EditarProductosLista from './pages/EditarProductosLista';
+import EditarProductoPage from './pages/EditarProductoPage';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/admin/products/add" element={<AddProductPage />} />
         <Route path="/admin/stock" element={<ManageStockPage />} />
+        <Route path="/admin/products/edit" element={<EditarProductosLista />} />
+        <Route path="/admin/products/edit/:id" element={<EditarProductoPage />} />
         
       </Routes>
     </Router>

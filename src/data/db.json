@@ -57,7 +57,7 @@
     {
       "id": "4",
       "title": "Camiseta Kevin Durant Phoenix Suns",
-      "price": "$85.000",
+      "price": "$80.000",
       "envio": "Envío gratis",
       "image": "https://m.media-amazon.com/images/I/61tGVEKa7JL._AC_SY550_.jpg",
       "images": [
@@ -182,7 +182,7 @@
     },
     {
       "id": "91",
-      "title": "Camiseta Brunson",
+      "title": "Camiseta Brunson Knicks",
       "price": "$80.000",
       "envio": "Envío gratis",
       "equipo": "Knicks",

@@ -15,6 +15,9 @@ function AdminPage() {
         <Link to="/admin/stock" className="admin-link">
         <button className="admin-button">Gestionar Stock</button>
         </Link>
+        <Link to="/admin/products/edit" className="admin-link">
+          <button className="admin-button">Editar Producto</button>
+        </Link>
       </div>
     </div>
   );
