@@ -13,14 +13,11 @@ function EditarProductoPage() {
       .then(data => setProducto(data));
   }, [id]);
 
-  const formatPrice = (value) => {
-    if (!value) return '';
-    return `$${Number(value).toLocaleString('es-AR')}`;
-  };
-
+  // Función para manejar cambios en los inputs del formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
 
+    // Si el campo modificado es el precio, formateamos solo números y lo mostramos con formato moneda
     if (name === 'price') {
       const rawValue = value.replace(/[^\d]/g, ''); // Quita todo lo que no sea número
       const formatted = `$${Number(rawValue).toLocaleString('es-AR')}`;
@@ -45,15 +42,16 @@ function EditarProductoPage() {
     }
   };
 
+  // Función para manejar el envío del formulario y actualizar el producto en el json-server
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault();  // Prevenir recarga de página
 
     const productoFormateado = {
       ...producto,
     };
 
-    await fetch(`http://localhost:3000/products/${id}`, {
-      method: 'PUT',
+    await fetch(`http://localhost:3000/products/${id}`, { 
+      method: 'PUT', // Actualizar producto
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(productoFormateado)
     });
@@ -62,18 +60,20 @@ function EditarProductoPage() {
     navigate('/admin/products/edit');
   };
 
-
+  // Función para eliminar el producto
   const handleDelete = async () => {
+    // Confirmación para evitar borrado accidental
     const confirm = window.confirm('¿Estás seguro de que querés eliminar este producto? Esta acción no se puede deshacer.');
 
     if (!confirm) return;
 
-    await fetch(`http://localhost:3000/products/${id}`, {
+    // Redirigir a la lista de productos después de eliminar
+    await fetch(`http://localhost:3000/products/${id}`, { 
       method: 'DELETE',
     });
 
     alert('Producto eliminado correctamente');
-    navigate('/admin/products/edit');
+    navigate('/admin/products/edit'); // Redirigir a la lista de productos después de eliminar
   };
 
 
@@ -99,9 +99,6 @@ function EditarProductoPage() {
             value={producto.price}
             onChange={handleChange}
           />
-
-          <label>Envío</label>
-          <input className="form-control" name="envio" value={producto.envio} onChange={handleChange} />
 
           <label>Equipo</label>
           <select

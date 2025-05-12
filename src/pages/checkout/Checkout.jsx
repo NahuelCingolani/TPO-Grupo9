@@ -1,4 +1,4 @@
-import { useCart } from '../context/CartContext';
+import { useCart } from '../../features/cart/context/CartContext';
 import './Checkout.css';
 import { useState, useEffect } from 'react';
 

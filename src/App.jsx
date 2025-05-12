@@ -1,21 +1,21 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Store from './pages/Store';
-import ProductPage from './pages/ProductPage';
-import Login from './pages/Login';
-import Registro from './pages/Registro';
-import { UserProvider } from './context/UserContext'; // Asegurate que la ruta sea correcta
-import Home from './Components/Home';
-import Carrito from './pages/Carrito';
-import Checkout from './pages/Checkout';
-import NavBar from './Components/NavBar';
-import Footer from './Components/Footer';
+import Store from './pages/store/Store';
+import ProductPage from './pages/store/ProductPage';
+import Login from './pages/auth/Login';
+import Registro from './pages/auth/Registro';
+import { UserProvider } from './features/user/context/UserContext'; 
+import Home from './pages/Home';
+import Carrito from './pages/cart/Carrito';
+import Checkout from './pages/checkout/Checkout';
+import NavBar from './shared/component/layouts/NavBar';
+import Footer from './shared/component/layouts/Footer';
 import './App.css';
 
-import AdminPage from './pages/AdminPage';
-import AddProductPage from './pages/AddProductPage';
-import ManageStockPage from './pages/ManageStockPage';
-import EditarProductosLista from './pages/EditarProductosLista';
-import EditarProductoPage from './pages/EditarProductoPage';
+import AdminPage from './pages/admin/AdminPage';
+import AddProductPage from './pages/admin/AddProductPage';
+import ManageStockPage from './pages/admin/ManageStockPage';
+import EditarProductosLista from './pages/admin/EditarProductosLista';
+import EditarProductoPage from './pages/admin/EditarProductoPage';
 
 
 import Contacto from './pages/Contacto'; 

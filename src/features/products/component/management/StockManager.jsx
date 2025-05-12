@@ -5,16 +5,17 @@ function StockManager({ product }) {
   const [stock, setStock] = useState(product.stock);
 
   const handleStockChange = (size, value) => {
-    const newStock = { ...stock, [size]: parseInt(value) || 0 };
+    const newStock = { ...stock, [size]: parseInt(value) || 0 }; // Si el valor no es un número válido, se usa 0 por defecto.
     setStock(newStock);
   };
 
   const handleSave = async () => {
     try {
+      // Realiza una solicitud PUT al servidor para actualizar el producto con el nuevo stock  
       const response = await fetch(`http://localhost:3000/products/${product.id}`, {
-        method: 'PUT',
+        method: 'PUT', //Actualizar recursos existentes
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...product, stock }),
+        body: JSON.stringify({ ...product, stock }), // Enviar el stock actualizado
       });
 
       if (!response.ok) throw new Error('Error al actualizar el stock');

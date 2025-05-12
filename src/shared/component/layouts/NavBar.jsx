@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
-import lakersLogo from '../Assets/lebron.png';
+import lakersLogo from '../../../Assets/lebron.png';
 import './NavBar.css';
 
 import { Link, useNavigate } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
-import { UserContext } from '../context/UserContext'; // Importar el contexto de usuario
+import { useCart } from '../../../features/cart/context/CartContext';
+import { UserContext } from '../../../features/user/context/UserContext'; // Importar el contexto de usuario
 
 const NavBar = () => {
   const [searchTerm, setSearchTerm] = useState('');

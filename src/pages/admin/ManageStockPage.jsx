@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import StockManager from '../Components/StockManager';
+import StockManager from '../../features/products/component/management/StockManager';
 import './ManageStockPage.css';
 
 function ManageStockPage() {
@@ -9,19 +9,19 @@ function ManageStockPage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:3000/products');
+        const response = await fetch('http://localhost:3000/products');  // Función asíncrona para obtener productos desde el json-server
         if (!response.ok) throw new Error('Error al cargar los productos');
         const data = await response.json();
-        setProducts(data);
-        setLoading(false);
+        setProducts(data); // Guardamos los productos en el estado
+        setLoading(false); // Cambiamos el estado de carga a false, que significa que ya no estamos cargando
       } catch (error) {
         console.error(error);
         alert('No se pudo cargar la lista de productos');
       }
     };
-
+    // Llamamos a la función que trae los productos
     fetchProducts();
-  }, []);
+  }, []); //Arreglo vacío [] indica que se ejecuta solo al montar
 
   if (loading) return <p>Cargando productos...</p>;
 

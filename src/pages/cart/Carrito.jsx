@@ -1,25 +1,27 @@
-import { useCart } from '../context/CartContext';
+import { useCart } from '../../features/cart/context/CartContext';
 import { Link } from 'react-router-dom';
 import './Carrito.css';
 
 const Carrito = () => {
   const { 
-    cartItems, 
-    updateQuantity, 
-    removeFromCart, 
-    getTotal,
-    getAvailableStock 
+    cartItems,        // Lista de productos en el carrito
+    updateQuantity,   // Función para cambiar cantidad de un producto
+    removeFromCart,   // Función para eliminar un producto del carrito
+    getTotal,         // Función para calcular el total del carrito
+    getAvailableStock // Función para obtener stock disponible de un producto y talle
   } = useCart();
 
+  // Función para aumentar cantidad respetando stock disponible
   const handleIncreaseQuantity = (item) => {
     const availableStock = getAvailableStock(item.id, item.talle);
-    if (item.quantity < availableStock) {
+    if (item.quantity < availableStock) { // Condicion que no supere el stock actual
       updateQuantity(item.id, 1, item.talle);
     } else {
       alert(`No puedes agregar más. Stock máximo: ${availableStock}`);
     }
   };
 
+  // Si el carrito está vacío, mostrar mensaje y botón para ir a la tienda  
   if (cartItems.length === 0) {
     return (
       <div className="carrito-vacio">

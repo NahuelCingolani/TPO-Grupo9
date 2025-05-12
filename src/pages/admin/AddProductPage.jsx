@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductForm from '../Components/ProductForm';
+import ProductForm from '../../features/products/component/management/ProductForm';
 import './AddProductPage.css';
 
 function AddProductPage() {
