@@ -1,15 +1,12 @@
 .filter-sidebar {
+  background: #111;
+  color: white;
   padding: 1rem;
-  background: black;
   border-radius: 8px;
-  width: 250px; /* Ancho fijo */
-  min-height: 100vh; /* Altura mínima igual al viewport */
-  position: fixed; /* Hacer que sea fijo */
-  top: 130px; /* Quedando bajo el navbar */
-  left: 0;
-  color: white; /* Contraste con el fondo */
+  width: 120px;
+  height: auto;
+  flex-shrink: 0; /* No se achica */
 }
-
 .checkbox-group {
   display: flex;
   flex-direction: column; /* Apilar las checkboxes */
@@ -30,6 +27,7 @@
   padding: 0.5rem 1rem;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 0.75rem;
 }
 
 .apply-filter-button:hover, .reset-filter-button:hover {
@@ -37,13 +35,16 @@
 }
 
 .button-container {
-  display: flex; /* Hace que los botones estén en una fila */
+  display: flex;
+  flex-direction: column; /* Hace que los botones estén en una fila */
   gap: 10px; /* Espacio entre los botones */
   margin-top: 10px;
 }
 
 .store-page {
   display: flex;
-  margin-left: 260px; /* Ajustar margen para que no se superponga con la sidebar fija */
+  align-items: flex-start;
+  gap: 20px;
   padding: 1rem;
+  min-height: 80vh;
 }
