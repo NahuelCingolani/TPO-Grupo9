@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import lakersLogo from '../Assets/lebron.png';
 import './NavBar.css';
 
-import { Link, useNavigate } from 'react-router-dom'; // ✅ Agregado useNavigate
+import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 
 const NavBar = () => {
@@ -57,4 +57,5 @@ const NavBar = () => {
 };
 
 export default NavBar;
+
 

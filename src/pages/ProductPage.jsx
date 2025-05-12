@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
 import "./ProductPage.css";
 import Navbar from "../Components/NavBar";
 import { useCart } from "../context/CartContext";
-
-
-
 
 export default function ProductPage() {
   const { id } = useParams();

@@ -23,22 +23,17 @@ export default function ProductList({ selectedTeam }) {
 
   // Aplicar filtros por equipo y búsqueda
   useEffect(() => {
-<<<<<<< HEAD
-    if (selectedTeam === 'Todos') {
-      setFilteredProducts(products);
-    } else if (Array.isArray(selectedTeam)) {
-      const filtered = products.filter((p) => selectedTeam.includes(p.equipo));
-      setFilteredProducts(filtered);
-    } else {
-      setFilteredProducts([]);
-=======
     const searchQuery = getSearchQuery();
-
     let filtered = products;
 
     if (selectedTeam && selectedTeam !== 'Todos') {
-      filtered = filtered.filter((p) => p.equipo === selectedTeam);
->>>>>>> 2e92fb7 (Funcionalidades de la barra de navegación)
+      // Si es un array de equipos
+      if (Array.isArray(selectedTeam)) {
+        filtered = filtered.filter((p) => selectedTeam.includes(p.equipo));
+      } else {
+        // Si es un solo equipo
+        filtered = filtered.filter((p) => p.equipo === selectedTeam);
+      }
     }
 
     if (searchQuery) {
@@ -57,11 +52,12 @@ export default function ProductList({ selectedTeam }) {
           <ProductCard key={product.id} product={product} />
         ))
       ) : (
-          <div className="no-products">
-            <p>No se encontraron productos.</p>
-          </div>
+        <div className="no-products">
+          <p>No se encontraron productos.</p>
+        </div>
       )}
     </div>
   );
 }
+
 
