@@ -9,6 +9,11 @@ import Checkout from './pages/Checkout';
 import NavBar from './Components/NavBar';
 import './App.css';
 
+import AdminPage from './pages/AdminPage';
+import AddProductPage from './pages/AddProductPage';
+import EditProductPage from './pages/EditProductPage';
+import ManageStockPage from './pages/ManageStockPage';
+
 function App() {
   return (
     <Router>
@@ -21,6 +26,12 @@ function App() {
         <Route path="/registro" element={<Registro />} /> 
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/checkout" element={<Checkout />} />
+
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/admin/products/add" element={<AddProductPage />} />
+        <Route path="/admin/stock" element={<ManageStockPage />} />
+
+
       </Routes>
     </Router>
   );

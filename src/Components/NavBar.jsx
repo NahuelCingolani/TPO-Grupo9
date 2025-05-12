@@ -23,7 +23,7 @@ const NavBar = () => {
       <div className="nav-links navbar_left">
         <a href="/store" className="nav-link">Jerseys</a>
         <a href="#ofertas" className="nav-link">Ofertas</a>
-        <a href="#novedades" className="nav-link">Novedades</a>
+        <Link to="/admin" className="nav-link">Admin</Link> {/* Nueva opción de Admin */}
       </div>
 
       <div className="logo-container">

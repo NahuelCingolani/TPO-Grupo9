@@ -33,7 +33,9 @@ export default function ProductList({ selectedTeam }) {
           <ProductCard key={product.id} product={product} />
         ))
       ) : (
-        <p>No se encontraron productos.</p>
+          <div className="no-products">
+            <p>No se encontraron productos.</p>
+          </div>
       )}
     </div>
   );
