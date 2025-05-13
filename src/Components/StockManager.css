@@ -1,7 +1,7 @@
 .stock-manager {
   margin: 20px auto;
   max-width: 800px;
-  color: black;
+  color: white;
 }
 
 .product-title {
@@ -15,6 +15,12 @@
   gap: 40px;
   align-items: flex-start;
   justify-content: center;
+}
+
+.product-image {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 25px; /* Ajusta este valor según cuánto quieras bajar la imagen */
 }
 
 .product-image img {

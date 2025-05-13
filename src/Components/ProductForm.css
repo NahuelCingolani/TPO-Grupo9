@@ -2,17 +2,17 @@
     max-width: 600px;
     margin: 2rem auto;
     padding: 2rem;
-    background-color: #ffffff;
+    background-color: #242424;
     border-radius: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    color: black;
+    color: white;
 }
 
 .product-form h2 {
     text-align: center;
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
-    color: #333;
+    color: white;
 }
 
 .product-form input[type="text"],
