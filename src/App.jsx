@@ -45,6 +45,7 @@ function App() {
           
         </Routes>
       </Router>
+      <Footer />
     </UserProvider>
   );
 }
