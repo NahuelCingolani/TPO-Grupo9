@@ -8,6 +8,7 @@ import Carrito from './pages/Carrito';
 import Checkout from './pages/Checkout';
 import NavBar from './Components/NavBar';
 import './App.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import AdminPage from './pages/AdminPage';
 import AddProductPage from './pages/AddProductPage';
