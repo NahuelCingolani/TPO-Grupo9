@@ -8,6 +8,7 @@ import Home from './Components/Home';
 import Carrito from './pages/Carrito';
 import Checkout from './pages/Checkout';
 import NavBar from './Components/NavBar';
+import Footer from './Components/Footer';
 import './App.css';
 
 import AdminPage from './pages/AdminPage';
