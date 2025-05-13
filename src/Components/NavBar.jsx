@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import lakersLogo from '../Assets/lebron.png';
 import './NavBar.css';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { UserContext } from '../context/UserContext'; // Importar el contexto de usuario
 
 const NavBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const { cartItems } = useCart();
+  const { currentUser } = useContext(UserContext); // Obtener el usuario actual del contexto
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const navigate = useNavigate();
 
@@ -26,10 +28,12 @@ const NavBar = () => {
     <nav className="navbar">
       <div className="nav-links navbar_left">
         <Link to="/store" className="nav-link">Jerseys</Link>
-        <a href="#ofertas" className="nav-link">Ofertas</a>
-        <a href="#novedades" className="nav-link">Novedades</a>
+
         <Link to="/contacto" className="nav-link">Contacto</Link>
-        <Link to="/admin" className="nav-link">Admin</Link>
+        {/* Mostrar el enlace de Admin solo si el usuario es administrador */}
+        {currentUser?.role === 'admin' && (
+          <Link to="/admin" className="nav-link">Admin</Link>
+        )}
       </div>
 
       <div className="logo-container">
