@@ -1,46 +1,61 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; 
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 import './Login.css';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const { login } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Login con:', email, password);
+    const success = login(email, password);
+    if (success) {
+      setMessage('¡Inicio de sesión exitoso! Redirigiendo a la página principal...');
+      console.log('Inicio de sesión exitoso');
+
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
+    } else {
+      setMessage('Credenciales incorrectas. Inténtalo de nuevo.');
+      console.log('Credenciales incorrectas');
+    }
   };
 
   return (
-    <>
-      <div className="login-container">
-        <form className="login-form" onSubmit={handleSubmit}>
-          <h1>Iniciar Sesión</h1>
+    <div className="login-container">
+      <form className="login-form" onSubmit={handleSubmit}>
+        <h1>Iniciar Sesión</h1>
 
-          <input
-            type="email"
-            placeholder="Correo electrónico"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+        {message && <p className="message">{message}</p>}
 
-          <input
-            type="password"
-            placeholder="Contraseña"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+        <input
+          type="email"
+          placeholder="Correo electrónico"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
 
-          <button type="submit">Entrar</button>
+        <input
+          type="password"
+          placeholder="Contraseña"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
 
-          <p className="register-text">
-            ¿No tenés cuenta? <Link to="/registro">Registrate</Link>
-          </p>
-        </form>
-      </div>
-    </>
+        <button type="submit">Iniciar Sesión</button>
+
+        <p className="register-text">
+          ¿No tienes una cuenta? <a href="/registro">Regístrate aquí</a>
+        </p>
+      </form>
+    </div>
   );
 }
 
