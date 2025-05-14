@@ -77,9 +77,18 @@ const Carrito = () => {
       </ul>
       <div className="carrito-total">
         <h3>Total: ${getTotal().toLocaleString()}</h3>
-        <Link to="/checkout">
-          <button className="btn-finalizar">Finalizar compra</button>
-        </Link>
+        <div className="carrito-botones">
+          <Link to="/store">
+            <button className="btn-seguir-comprando">
+              <i className="fas fa-shopping-bag"></i> Seguir comprando
+            </button>
+          </Link>
+          <Link to="/checkout">
+            <button className="btn-finalizar">
+              <i className="fas fa-credit-card"></i> Finalizar compra
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import "./ProductPage.css";
 import Navbar from "../Components/NavBar";
 import { useCart } from "../context/CartContext";
@@ -7,6 +7,7 @@ import { useCart } from "../context/CartContext";
 export default function ProductPage() {
   const { id } = useParams();
   const { addToCart } = useCart();
+  const navigate = useNavigate();
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -120,7 +121,22 @@ export default function ProductPage() {
   };
 
   const handleBuyNow = () => {
-    alert(`¡Gracias por tu compra de "${product.title}"!`);
+    if (!selectedSize) {
+      alert("Por favor selecciona un talle antes de comprar.");
+      return;
+    }
+
+    const productForCart = {
+      id: product.id,
+      nombre: product.title,
+      precio: parseFloat(product.price.replace(/\$/g, "").replace(/\./g, "")),
+      imagen: product.images[0],
+      talle: selectedSize,
+    };
+
+    addToCart(productForCart); // Agrega el producto al carrito
+    alert(`¡Gracias por tu compra de "${product.title}" (Talle: ${selectedSize})!`);
+    navigate("/carrito"); // Redirige al carrito
   };
 
   const handleAddToFavorites = () => {
@@ -176,6 +192,12 @@ export default function ProductPage() {
         <div className="product-page__info">
           <h1>{product.title}</h1>
           <p><strong>Precio:</strong> {product.price}</p>
+          <p>
+            <strong>Mismo precio en 3 cuotas de:</strong>{" "}
+            {`$${(parseFloat(product.price.replace(/\$/g, "").replace(/\./g, "")) / 3)
+              .toFixed(2)
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`}
+          </p>
           <p><strong>Equipo:</strong> {product.equipo}</p>
           <p><strong>Descripción:</strong> {product.description || "Sin descripción disponible."}</p>
           <p>
@@ -183,10 +205,12 @@ export default function ProductPage() {
             {shippingCost === null
               ? "desde $500"
               : shippingCost === 0
-              ? "Envío gratis"
-              : shippingCost === "No disponible para este CP"
-              ? "No disponible para este CP"
-              : `$${shippingCost}`}
+              ? "Envío gratis. Llega en 24hs."
+              : shippingCost === 5000
+              ? "$5000. Llega en 3 días hábiles"
+              : shippingCost === 9000
+              ? "$9000. Llega en 5 días hábiles"
+              : "No disponible para este CP"}
           </p>
 
           <div className="product-page__actions-container">
