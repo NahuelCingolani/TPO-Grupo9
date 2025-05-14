@@ -143,10 +143,14 @@ export default function ProductPage() {
   };
 
   const handleCalculateShipping = () => {
-    if (postalCode.startsWith("7000")) {
-      setShippingCost(5000);
-    } else if (postalCode.startsWith("1000")) {
+    const postalCodeNumber = parseInt(postalCode, 10); // Convierte el código postal a número
+  
+    if (postalCodeNumber >= 1000 && postalCodeNumber <= 1999) {
       setShippingCost(0); // Envío gratis
+    } else if (postalCodeNumber >= 7000 && postalCodeNumber <= 7999) {
+      setShippingCost(5000); // Costo desde $5000
+    } else if (postalCodeNumber >= 6000 && postalCodeNumber <= 6999) {
+      setShippingCost(9000); // Costo desde $9000
     } else {
       setShippingCost("No disponible para este CP");
     }
@@ -292,13 +296,24 @@ export default function ProductPage() {
       {/* Dejar una consulta */}
       <div className="product-page__consultation">
         <h2>Dejar una consulta</h2>
-        <form onSubmit={handleConsultationSubmit}>
-          <textarea
-            value={consultation}
-            onChange={(e) => setConsultation(e.target.value)}
-            placeholder="Escribe tu consulta aquí..."
-            rows="4"
-          />
+        <form onSubmit={handleConsultationSubmit} className="consultation-form">
+          <div className="consultation-input-container">
+            <textarea
+              value={consultation}
+              onChange={(e) => setConsultation(e.target.value)}
+              placeholder="Escribe tu consulta aquí..."
+              rows="4"
+              className="consultation-textarea"
+            />
+            <a
+              href="https://wa.me/2215342811" // Reemplaza con tu número de WhatsApp
+              target="_blank"
+              rel="noopener noreferrer"
+              className="whatsapp-icon"
+            >
+              <i className="fab fa-whatsapp"></i>
+            </a>
+          </div>
           <button type="submit" className="btn btn-submit">Enviar consulta</button>
         </form>
       </div>

@@ -477,3 +477,41 @@ textarea {
   width: 200px; /* Asegura que ambos tengan el mismo ancho */
   text-align: center; /* Centra el texto dentro de cada bloque */
 }
+
+.consultation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.consultation-input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaciado entre el textarea y el ícono */
+}
+
+.consultation-textarea {
+  flex: 1; /* Ocupa todo el espacio disponible */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.whatsapp-icon {
+  font-size: 24px;
+  color: #25D366; /* Color oficial de WhatsApp */
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #e5e5e5; /* Fondo claro para el ícono */
+  transition: background-color 0.3s ease;
+}
+
+.whatsapp-icon:hover {
+  background-color: #d4f5e9; /* Fondo más claro al pasar el mouse */
+}
