@@ -1,6 +1,6 @@
 import { useCart } from '../context/CartContext';
 import './Checkout.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Checkout = () => {
   const { cartItems, getTotal, clearCart } = useCart();
@@ -21,6 +21,14 @@ const Checkout = () => {
   const [direccion, setDireccion] = useState('');
   const [telefono, setTelefono] = useState('');
   const [dni, setDni] = useState('');
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0, // Posición superior
+      left: 0, // Posición izquierda
+      behavior: "smooth", // Desplazamiento suave
+    });
+  }, []);
 
   const detectarTipoTarjeta = (numero) => {
     const visaRegex = /^4[0-9]{0,15}$/; // Visa comienza con 4
@@ -244,8 +252,7 @@ const Checkout = () => {
                 6 cuotas con 15% interés de ${calcularCuota(getTotal(), 6)}
               </option>
               <option value={12}>
-            
-            
+                12 cuotas con 30% interés de ${calcularCuota(getTotal(), 12)} 
               </option>
             </select>
           </div>
