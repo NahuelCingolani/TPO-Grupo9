@@ -330,7 +330,7 @@ export default function ProductPage() {
               className="consultation-textarea"
             />
             <a
-              href="https://wa.me/2215342811" // Reemplaza con tu número de WhatsApp
+              href="https://wa.me/2215342811" 
               target="_blank"
               rel="noopener noreferrer"
               className="whatsapp-icon"
