@@ -29,9 +29,22 @@ const Contacto = () => {
         {/* Columna de información */}
         <div className="contacto-column contacto-info">
           <h3>Datos de Contacto</h3>
-          <p>📞 Teléfono: +1 234 567 8901</p>
-          <p>📧 Email: example@example.com</p>
-          <p>🏢 Dirección: Calle Falsa 123, Ciudad Ejemplo</p>
+          <p>📞 Teléfono: +54 11 4567 8901</p>
+          <p>📧 Email: contacto@nbastore.com </p>
+          <p>🏢 Ubicación: Balvanera, Capital Federal</p>
+          <a> </a>
+          <p>🌐 Envianos un WhatsApp:
+            
+          </p>
+
+          <a
+              href="https://wa.me/2215342811" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="whatsapp-icon"
+            >
+              <i className="fab fa-whatsapp"></i>
+            </a>
         </div>
 
         {/* Columna del formulario */}

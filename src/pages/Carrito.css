@@ -1,24 +1,40 @@
 .carrito-container {
-  padding: 2rem;
+  padding: 8rem;
   max-width: 900px;
   margin: auto;
+  min-height: 100vh; /* Asegura que el contenedor abarque toda la altura de la ventana */
+  background-color: #1a1a1a; /* Fondo oscuro para consistencia */
+  color: white; /* Texto blanco para contraste */
 }
 
 .carrito-item {
   display: flex;
-  align-items: center;
+  align-items: center; /* Alinea verticalmente los elementos */
+  justify-content: space-between; /* Espacia los elementos horizontalmente */
   margin-bottom: 1.5rem;
   border-bottom: 1px solid #ccc;
   padding-bottom: 1rem;
 }
 
 .carrito-img {
-  width: 200px;
+  width: 250px; /* Ajusta el tamaño de la imagen */
+  height: auto;
+  margin-right: 1rem;
+}
+
+.carrito-detalle {
+  flex: 1; /* Permite que el detalle ocupe el espacio restante */
   margin-right: 1rem;
 }
 
 .carrito-detalle h4 {
   margin: 0;
+}
+
+.cantidad-controles {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaciado entre los botones y el número */
 }
 
 .cantidad-controles button {
@@ -38,10 +54,44 @@
   margin-top: 2rem;
 }
 
-.btn-finalizar {
-  padding: 0.8rem 1.5rem;
-  background-color: black;
+.carrito-botones {
+  display: flex;
+  gap: 10px; /* Espaciado entre los botones */
+  justify-content: center; /* Centra los botones horizontalmente */
+}
+
+.carrito-botones button i {
+  margin-right: 8px; /* Espaciado entre el ícono y el texto */
+  font-size: 18px; /* Tamaño del ícono */
+  vertical-align: middle; /* Alinea el ícono con el texto */
+}
+
+.btn-seguir-comprando {
+  padding: 10px 20px;
+  background-color: #007bff; /* Color azul */
   color: white;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-seguir-comprando:hover {
+  background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
+}
+
+.btn-finalizar {
+  padding: 10px 20px;
+  background-color: #28a745; /* Color verde */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-finalizar:hover {
+  background-color: #218838; /* Verde más oscuro al pasar el mouse */
 }
