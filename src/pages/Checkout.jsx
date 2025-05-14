@@ -17,6 +17,10 @@ const Checkout = () => {
   const [cuotas, setCuotas] = useState(3); // Por defecto, 3 cuotas
   const [totalConInteres, setTotalConInteres] = useState(getTotal());
   const [costoEnvio, setCostoEnvio] = useState(0);
+  const [nombre, setNombre] = useState('');
+  const [direccion, setDireccion] = useState('');
+  const [telefono, setTelefono] = useState('');
+  const [dni, setDni] = useState('');
 
   const detectarTipoTarjeta = (numero) => {
     const visaRegex = /^4[0-9]{0,15}$/; // Visa comienza con 4
@@ -64,6 +68,10 @@ const Checkout = () => {
 
     const pedido = {
       email,
+      nombre,
+      direccion,
+      telefono,
+      dni,
       codigoPostal,
       productos: cartItems,
       total: getTotal(),
@@ -116,11 +124,56 @@ const Checkout = () => {
           <input
             type="email"
             required
+            placeholder='ejemplo@email.com'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />          
 
+          <label>Nombre:</label>
+          <input
+            type="text"
+            required
+            placeholder="Nombre y Apellido"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+          />
 
+          <label>Dirección:</label>
+          <input
+            type="text"
+            required
+            placeholder="Calle, Número, Piso, Departamento"
+            value={direccion}
+            onChange={(e) => setDireccion(e.target.value)}
+          />
+          
+          <label>Ciudad:</label>
+          <input
+            type="text"
+            required
+            placeholder="Ciudad, Provincia"
+            value={direccion}
+            onChange={(e) => setDireccion(e.target.value)}
+          />
+          
+
+          <label>Teléfono:</label>
+          <input
+            type="tel"
+            required
+            placeholder="221 234-5678"
+            value={telefono}
+            onChange={(e) => setTelefono(e.target.value)}
+          />
+
+          <label>DNI:</label>
+          <input
+            type="text"
+            required
+            placeholder="DNI o Pasaporte"
+            value={dni}
+            onChange={(e) => setDni(e.target.value)}
+          />
 
           <h3>Información de pago</h3>
 
@@ -191,7 +244,8 @@ const Checkout = () => {
                 6 cuotas con 15% interés de ${calcularCuota(getTotal(), 6)}
               </option>
               <option value={12}>
-                12 cuotas con 30% interés de ${calcularCuota(getTotal(), 12)}
+            
+            
               </option>
             </select>
           </div>
