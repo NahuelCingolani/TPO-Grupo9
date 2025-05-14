@@ -28,7 +28,6 @@ const NavBar = () => {
     <nav className="navbar">
       <div className="nav-links navbar_left">
         <Link to="/store" className="nav-link">Jerseys</Link>
-
         <Link to="/contacto" className="nav-link">Contacto</Link>
         {/* Mostrar el enlace de Admin solo si el usuario es administrador */}
         {currentUser?.role === 'admin' && (
