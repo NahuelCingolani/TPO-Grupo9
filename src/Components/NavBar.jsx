@@ -9,7 +9,7 @@ import { UserContext } from '../context/UserContext'; // Importar el contexto de
 const NavBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const { cartItems } = useCart();
-  const { currentUser } = useContext(UserContext); // Obtener el usuario actual del contexto
+  const { currentUser, logout } = useContext(UserContext); // Obtener el usuario actual y la función de logout del contexto
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const navigate = useNavigate();
 
@@ -24,11 +24,15 @@ const NavBar = () => {
     }
   };
 
+  const handleLogout = () => {
+    logout(); // Llamar a la función de logout del contexto
+    navigate('/login'); // Redirigir al usuario a la página de login
+  };
+
   return (
     <nav className="navbar">
       <div className="nav-links navbar_left">
         <Link to="/store" className="nav-link">Jerseys</Link>
-
         <Link to="/contacto" className="nav-link">Contacto</Link>
         {/* Mostrar el enlace de Admin solo si el usuario es administrador */}
         {currentUser?.role === 'admin' && (
@@ -53,7 +57,16 @@ const NavBar = () => {
           />
           <button type="submit" className="search-button">Buscar</button>
         </form>
-        <Link to="/login" className="nav-link">Login</Link>
+
+        {currentUser ? (
+          <div className="user-info">
+            <span className="welcome-message">Hola, {currentUser.nombre}</span>
+            <button onClick={handleLogout} className="logout-button">Logout</button>
+          </div>
+        ) : (
+          <Link to="/login" className="nav-link">Login</Link>
+        )}
+
         <Link to="/carrito" className="nav-link">Carrito ({totalItems})</Link>
       </div>
     </nav>

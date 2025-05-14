@@ -86,4 +86,19 @@
   .search-button:hover {
     background-color: #e4b400;
   }
-  
+
+
+.logout-button {
+    padding: 1px 8px; 
+    background-color: #ff4d4d;
+    color: white;
+    border: none; 
+    border-radius: 3px; 
+    cursor: pointer;
+    font-size: 14px; 
+    margin-left: 10px; 
+}
+
+.logout-button:hover {
+    background-color: #ff1a1a; /* Color al pasar el mouse */
+}
