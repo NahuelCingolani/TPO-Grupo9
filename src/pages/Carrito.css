@@ -34,7 +34,7 @@
 .cantidad-controles {
   display: flex;
   align-items: center;
-  gap: 10px; /* Espaciado entre los botones y el número */
+  gap: 100px; /* Espaciado entre los botones y el número */
 }
 
 .cantidad-controles button {

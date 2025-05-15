@@ -34,6 +34,7 @@ export default function ProductPage() {
       .finally(() => setLoading(false));
   }, [id]);
 
+  // Para el producto principal
   useEffect(() => {
     if (product) {
       fetch(`http://localhost:3000/products/similar/${product.id}`)
@@ -46,6 +47,7 @@ export default function ProductPage() {
     }
   }, [product]);
 
+  // Productos similares
   useEffect(() => {
     fetch(`http://localhost:3000/products`)
       .then((res) => {
@@ -88,18 +90,6 @@ export default function ProductPage() {
       );
       currentImage.classList.remove("hidden");
     }, 500);
-  };
-
-  const handleNextSimilar = () => {
-    setCurrentSimilarIndex((prev) =>
-      prev === similarProducts.length - 1 ? 0 : prev + 1
-    );
-  };
-
-  const handlePrevSimilar = () => {
-    setCurrentSimilarIndex((prev) =>
-      prev === 0 ? similarProducts.length - 1 : prev - 1
-    );
   };
 
   const handleAddToCart = () => {
