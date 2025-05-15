@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import "./ProductPage.css";
-import Navbar from "../Components/NavBar";
-import { useCart } from "../context/CartContext";
+import Navbar from "../../shared/component/layouts/NavBar";
+import { useCart } from "../../features/cart/context/CartContext";
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -193,7 +193,7 @@ export default function ProductPage() {
           <p>
             <strong>Envío:</strong>{" "}
             {shippingCost === null
-              ? "desde $500"
+              ? "Ingrese su código postal para calcular el costo de envío."
               : shippingCost === 0
               ? "Envío gratis. Llega en 24hs."
               : shippingCost === 5000

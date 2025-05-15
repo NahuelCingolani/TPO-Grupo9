@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import NavBar from '../Components/NavBar';
-import FilterSidebar from '../components/FilterSidebar';
-import ProductList from '../Components/ProductList';
+import NavBar from "../../shared/component/layouts/NavBar";
+import FilterSidebar from '../../features/products/component/catalog/FilterSidebar';
+import ProductList from '../../features/products/component/catalog/ProductList';
 import './Store.css';
 
 export default function Store() {

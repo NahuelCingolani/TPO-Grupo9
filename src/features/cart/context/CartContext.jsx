@@ -17,12 +17,14 @@ export const CartProvider = ({ children }) => {
       .catch(err => console.error('Error cargando productos:', err));
   }, []);
 
+  // Función para obtener el stock disponible de un producto según su talla
   const getAvailableStock = (productId, size) => {
     const product = products.find(p => p.id === productId);
     if (!product || !product.stock) return 0;
     return product.stock[size] || 0;
   };
 
+  // Función para agregar un producto al carrito
   const addToCart = (product) => {
     setCartItems((prevItems) => {
       const existingItem = prevItems.find((item) => 
@@ -48,6 +50,7 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  // Función para actualizar la cantidad de un producto en el carrito
   const updateQuantity = (id, delta, talle) => {
     setCartItems((prevItems) =>
       prevItems.map((item) => {
@@ -71,6 +74,7 @@ export const CartProvider = ({ children }) => {
     );
   };
 
+  // Función para eliminar un producto del carrito
   const removeFromCart = (id, talle) => {
     setCartItems((prevItems) =>
       prevItems.filter((item) => !(item.id === id && item.talle === talle))

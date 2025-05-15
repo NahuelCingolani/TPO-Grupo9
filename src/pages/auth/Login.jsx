@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../context/UserContext';
+import { UserContext } from '../../features/user/context/UserContext';
 import './Login.css';
 
 function Login() {
@@ -12,7 +12,7 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const success = login(email, password);
+    const success = login(email, password); // Llama a la función de inicio de sesión del contexto
     if (success) {
       setMessage('¡Inicio de sesión exitoso! Redirigiendo a la página principal...');
       console.log('Inicio de sesión exitoso');

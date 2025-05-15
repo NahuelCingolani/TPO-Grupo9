@@ -7,7 +7,6 @@ function ProductForm({ initialData = {} }) {
   const [form, setForm] = useState({
     title: initialData.title || '',
     price: initialData.price || '',
-    envio: initialData.envio || 'Envío gratis',
     equipo: initialData.equipo || '',
     image: initialData.image || '',
     images: initialData.images || ['', ''],
@@ -50,9 +49,20 @@ function ProductForm({ initialData = {} }) {
       const products = await res.json();
 
       // Calcular el ID del nuevo producto
-      const maxId = products.reduce((max, p) => (p.id > max ? p.id : max), 0);
-      const newProduct = { ...form, id: maxId + 1 };
+      const maxId = products.reduce((max, p) => {
+        const currentId = Number(p.id); // Convertir a número
+        return currentId > max ? currentId : max;
+      }, 0);
 
+      // Convertir los valores del stock a string
+      const stockAsString = {};
+      Object.entries(form.stock).forEach(([key, value]) => {
+        stockAsString[key] = value.toString();
+      });
+
+      const newProduct = { ...form, id: (maxId + 1).toString(), stock: stockAsString };
+      
+      // Enviar el nuevo producto al servidor
       const response = await fetch('http://localhost:3000/products', {
         method: 'POST',
         headers: {
@@ -64,7 +74,7 @@ function ProductForm({ initialData = {} }) {
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }
-
+      
       const data = await response.json();
       console.log('Producto guardado:', data);
       alert('Producto guardado exitosamente');

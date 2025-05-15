@@ -11,7 +11,7 @@
       ],
       "equipo": "Lakers",
       "stock": {
-        "S": 3,
+        "S": 2,
         "M": 5,
         "L": 1,
         "XL": 0
@@ -45,7 +45,7 @@
       ],
       "equipo": "Bulls",
       "stock": {
-        "S": 1,
+        "S": 0,
         "M": 2,
         "L": 2,
         "XL": 0
@@ -171,7 +171,7 @@
       }
     },
     {
-      "id": "91",
+      "id": "11",
       "title": "Camiseta Brunson Knicks",
       "price": "$80.000",
       "equipo": "Knicks",

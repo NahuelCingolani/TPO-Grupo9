@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../context/UserContext';
+import { UserContext } from '../../features/user/context/UserContext'; // Importar el contexto de usuario
 import './Registro.css';
 
 function Registro() {

@@ -36,11 +36,14 @@ export default function ProductList({ selectedTeam }) {
       }
     }
 
+    // Filtrar por búsqueda palabras
     if (searchQuery) {
       filtered = filtered.filter((p) =>
+        // Para cada producto, convierte el título a minúsculas (si existe) y verifica si incluye el texto de búsqueda (también en minúsculas para asegurar coincidencias sin importar mayúsculas o minúsculas)
         p.title?.toLowerCase().includes(searchQuery)
       );
     }
+
 
     setFilteredProducts(filtered);
   }, [selectedTeam, products, location]);

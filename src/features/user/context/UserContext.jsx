@@ -3,12 +3,14 @@ import React, { createContext, useState, useEffect } from 'react';
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+    // Almacenar todos los usuarios registrados
     const [users, setUsers] = useState(() => {
         // Cargar usuarios desde localStorage al iniciar
         const storedUsers = localStorage.getItem('users');
         return storedUsers ? JSON.parse(storedUsers) : [];
     });
 
+    // Almacenar el usuario actual
     const [currentUser, setCurrentUser] = useState(() => {
         // Cargar usuario actual desde localStorage al iniciar
         const storedUser = localStorage.getItem('currentUser');
@@ -22,6 +24,7 @@ export const UserProvider = ({ children }) => {
     };
 
     const login = (email, password) => {
+        // Verificar si el usuario existe y la contraseña es correcta
         const user = users.find(
             (u) => u.email === email && u.password === password
         );
@@ -30,7 +33,7 @@ export const UserProvider = ({ children }) => {
             localStorage.setItem('currentUser', JSON.stringify(user)); // Guardar usuario actual en localStorage
             return true;
         }
-        return false;
+        return false; // Login fallido
     };
 
     const logout = () => {
