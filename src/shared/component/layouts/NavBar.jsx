@@ -3,12 +3,9 @@ import lakersLogo from '../../../Assets/lebron.png';
 import './NavBar.css';
 
 import { Link, useNavigate } from 'react-router-dom';
-<<<<<<< HEAD:src/shared/component/layouts/NavBar.jsx
 import { useCart } from '../../../features/cart/context/CartContext';
 import { UserContext } from '../../../features/user/context/UserContext'; // Importar el contexto de usuario
-=======
-import { useCart } from '../context/CartContext';
->>>>>>> a71fe43 ( Funcionalidades de navegación y búsqueda integradas):src/Components/NavBar.jsx
+
 
 const NavBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
